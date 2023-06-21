@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  mariadb:
+    build:
+      context: ./maria
+      dockerfile: MariaDB.Dockerfile
+    container_name: mariadb-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+  nginx:
+    build:
+      context: ./ng
+      dockerfile: Nginx.Dockerfile
+    container_name: nginx-container
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - nginx-config:/etc/nginx/conf.d
+      - nginx-html:/usr/share/nginx/html
+    depends_on:
+      - mariadb
+
+  wordpress:
+    build:
+      context: ./word
+      dockerfile: WordPress.Dockerfile
+    container_name: wordpress-container
+    restart: always
+    ports:
+      - 8080:8080
+    volumes:
+      - wordpress-data:/var/www/html
+    depends_on:
+      - mariadb
+      - nginx
+
+volumes:
+  mariadb-data:
+  nginx-config:
+  nginx-html:
+  wordpress-data:
