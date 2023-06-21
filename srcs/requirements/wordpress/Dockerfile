@@ -20,9 +20,8 @@ RUN curl -o /tmp/wordpress.tar.gz -SL https://wordpress.org/latest.tar.gz \
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-#COPY	conf.php /etc/php/7.4/fpm/pool.f/conf.php
+COPY conf.php /etc/php/7.4/fpm/pool.f/conf.php
 
 #ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
 CMD ["/usr/sbin/php-fpm7.4", "-F"]
-
