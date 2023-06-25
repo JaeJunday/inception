@@ -2,8 +2,9 @@ FROM debian:bullseye
 
 RUN	apt-get -y update \
 	&& apt-get -y install curl \
+	&& apt-get -y install wget \
 	&& apt-get -y install php7.4 \
-	&& apt-get -y install php7.4-fpm php7.4-mysql mariadb-client wget \
+	&& apt-get -y install php7.4-fpm php7.4-mysql mariadb-client \
 	&& apt-get -y install dumb-init
 
 VOLUME ["/home/jaejkim/data/wordpress"]
