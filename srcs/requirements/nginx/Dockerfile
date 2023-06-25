@@ -44,10 +44,3 @@ RUN chown -R www-data:www-data /var/www/html && \
 # Expose ports
 EXPOSE 80
 
-# Multi-stage build
-FROM base as final
-
-# Start services
-CMD service mysql start && \
-    service php7.4-fpm start && \
-    nginx -g "daemon off;"

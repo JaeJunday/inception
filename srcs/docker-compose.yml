@@ -1,47 +1,30 @@
-version: "3"
+version: '3'
 
 services:
-  mariadb:
+  maria-db:
     build:
-      context: ./mariadb
-      dockerfile: Dockerfile 
-    container_name: mariadb
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
     volumes:
-      - mariadb-data:/var/lib/mysql
+      - /home/jaejkim/data/mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
 
   nginx:
     build:
-      context: ./ng
+      context: ./requirements/nginx
       dockerfile: Dockerfile
-    container_name: nginx
-    restart: always
+    volumes:
+      - /home/jaejkim/data/nginx:/var/log/nginx
+      - /home/jaejkim/data/nginx/conf:/etc/nginx/conf.d
     ports:
       - 80:80
-    volumes:
-      - nginx-config:/etc/nginx/conf.d
-      - nginx-html:/usr/share/nginx/html
-    depends_on:
-      - mariadb
 
   wordpress:
     build:
-      context: ./word
+      context: ./requirements/wordpress
       dockerfile: Dockerfile
-    container_name: wordpress
-    restart: always
+    volumes:
+      - /home/jaejkim/data/wordpress:/var/www/html
     ports:
       - 8080:8080
-    volumes:
-      - wordpress-data:/var/www/html
-    depends_on:
-      - mariadb
-      - nginx
-
-volumes:
-  mariadb-data:
-  nginx-config:
-  nginx-html:
-  wordpress-data:
