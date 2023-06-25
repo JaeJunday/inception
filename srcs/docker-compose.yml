@@ -3,9 +3,9 @@ version: "3"
 services:
   mariadb:
     build:
-      context: ./maria
-      dockerfile: MariaDB.Dockerfile
-    container_name: mariadb-container
+      context: ./mariadb
+      dockerfile: Dockerfile 
+    container_name: mariadb
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
@@ -15,8 +15,8 @@ services:
   nginx:
     build:
       context: ./ng
-      dockerfile: Nginx.Dockerfile
-    container_name: nginx-container
+      dockerfile: Dockerfile
+    container_name: nginx
     restart: always
     ports:
       - 80:80
@@ -29,8 +29,8 @@ services:
   wordpress:
     build:
       context: ./word
-      dockerfile: WordPress.Dockerfile
-    container_name: wordpress-container
+      dockerfile: Dockerfile
+    container_name: wordpress
     restart: always
     ports:
       - 8080:8080
