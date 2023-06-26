@@ -2,25 +2,25 @@ version: '3'
 
 services:
   mariadb:
+    container_name: mariadb
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
-    container_name: mariadb
     volumes:
       - /home/jaejkim/data/mariadb:/var/lib/mysql
     expose:
-      - 3306
+      - 3306:3306
     restart: always
 
   wordpress:
+    container_name: wordpress
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
-    container_name: wordpress
     volumes:
       - /home/jaejkim/data/wordpress:/var/www/html
     expose:
-      - 9000
+      - 9000:9000
     restart: always
 
   nginx:
