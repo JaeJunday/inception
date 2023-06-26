@@ -1,15 +1,28 @@
-FROM debian:bullseye
+FROM	debian:bullseye
 
-# 설치 및 설정
-RUN apt-get update \
-    && apt-get install -y mariadb-server
-RUN chown -R mysql:mysql /var/lib/mysql/
+RUN 	apt-get -y update \
+		&& apt-get -y install dumb-init
 
-# Mariadb 설정 파일 복사
-COPY conf/my.cnf /etc/mysql/my.cnf
+RUN		apt-get -y install \
+        mariadb-server \
+        mariadb-client
 
-# 포트 노출
-EXPOSE 3306
+RUN		mkdir /run/mysqld \
+		&& chmod 777 /run/mysqld \
+		&& chmod 777 /var/lib/mysql \
+		&& rm -rf /var/lib/mysql/aria_log_control
 
-# 컨테이너 실행 시 자동으로 Mariadb 서비스 시작
-CMD ["mysqld"]
+# COPY	tools/settings.sh .
+# COPY	tools/my.sql .
+COPY	conf/my.cnf /etc/mysql/my.cnf
+COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+
+# RUN		chmod 777 ./settings.sh
+
+EXPOSE		3306
+
+VOLUME		["/home/jaejkim/data/mariadb"]
+
+ENTRYPOINT	["/usr/bin/dumb-init", "--"]
+
+CMD		["mysqld" "--user=root"]
