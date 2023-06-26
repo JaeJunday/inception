@@ -1,4 +1,5 @@
 <?php
+# DB setting
 
 define( 'DB_NAME', $_ENV['WORDPRESS_DB_NAME'] );
 define( 'DB_USER', $_ENV['WORDPRESS_DB_USER'] );

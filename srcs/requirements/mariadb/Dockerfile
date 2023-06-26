@@ -13,7 +13,6 @@ ENV MYSQL_USER=wordpress_user
 ENV MYSQL_PASSWORD=wordpress_password
 
 # Copy database initialization script
-COPY init.sql /docker-entrypoint-initdb.d/init.sql
 
 # Expose port
 EXPOSE 3306
@@ -22,9 +21,8 @@ EXPOSE 3306
 CMD ["mysqld"]
 FROM debian:bullseye
 
-RUN apt-get update \
-    && apt-get install -y mariadb-server \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    mariadb-server
 
 VOLUME ["/var/lib/mysql"]
 
