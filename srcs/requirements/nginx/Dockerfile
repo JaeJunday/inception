@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     mariadb-server \
     php-fpm \
     php-mysql \
+    dumb-init \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy Nginx configuration

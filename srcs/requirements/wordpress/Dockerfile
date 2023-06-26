@@ -1,11 +1,13 @@
 FROM debian:bullseye
 
-RUN	apt-get -y update \
-	&& apt-get -y install curl \
-	&& apt-get -y install wget \
-	&& apt-get -y install php7.4 \
-	&& apt-get -y install php7.4-fpm php7.4-mysql mariadb-client \
-	&& apt-get -y install dumb-init
+RUN	apt-get update && apt-get install -y \
+	curl \
+	php7.4 \
+	php7.4-fpm \
+	php7.4-mysql \	
+	mariadb-client \
+	dumb-init \
+	&& rm -rf /var/lib/apt/lists/*
 
 VOLUME ["/home/jaejkim/data/wordpress"]
 
@@ -22,6 +24,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 COPY conf/wp-config.php /etc/php/7.4/fpm/pool.f/conf.php
+
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
