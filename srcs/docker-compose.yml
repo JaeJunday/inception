@@ -1,14 +1,15 @@
 version: '3'
 
 services:
-  # maria-db:
-  #   build:
-  #     context: ./requirements/mariadb
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - /home/jaejkim/data/mariadb:/var/lib/mysql
-  #   ports:
-  #     - 3306:3306
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+      dockerfile: Dockerfile
+    container_name: mariadb
+    volumes:
+      - /home/jaejkim/data/wordpress:/var/www/html
+    expose:
+      - 3306
 
   wordpress:
     build:

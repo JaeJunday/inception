@@ -1,15 +1,15 @@
 up : 
-		cd ./srcs && docker compose up
+		cd ./srcs && sudo docker compose up
 
 down : 
-		cd ./srcs && docker compose down
+		cd ./srcs && sudo docker compose down
 
 clean :
-		make down
-		docker image prune -a
+		sudo make down
+		sudo docker image prune -a
 
 fclean:
-		make down
-		docker system prune -a
+		sudo make down
+		sudo docker system prune -a
 
 .PHONY: clean fclean up down

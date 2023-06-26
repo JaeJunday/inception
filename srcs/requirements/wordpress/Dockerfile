@@ -1,7 +1,5 @@
-# BASE image
 FROM debian:bullseye
 
-# application install
 RUN	apt-get update && apt-get install -y \
 	curl \
 	php7.4 \
