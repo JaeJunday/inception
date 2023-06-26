@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y \
 
 COPY /conf/default.conf /etc/nginx/sites-enabled/default
 
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+
 CMD ["nginx", "-g", "daemon off;"]
 
 EXPOSE 80
