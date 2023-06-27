@@ -11,12 +11,11 @@ RUN		mkdir /run/mysqld \
 		&& chmod 777 /var/lib/mysql \
 		&& rm -rf /var/lib/mysql/aria_log_control
 
-COPY	tools/settings.sh .
-COPY	tools/my.sql .
+COPY	tools/setting.sh .
 COPY	conf/my.cnf /etc/mysql/my.cnf
 COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN		chmod 777 ./settings.sh
+RUN		chmod 777 ./setting.sh
 
 EXPOSE		3306
 
@@ -24,4 +23,4 @@ VOLUME		["$HOME/data/mariadb"]
 
 ENTRYPOINT	["/usr/bin/dumb-init", "--"]
 
-CMD		["./settings.sh"]
+CMD		["./setting.sh"]
