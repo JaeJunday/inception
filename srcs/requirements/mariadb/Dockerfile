@@ -15,11 +15,14 @@ RUN		mkdir /run/mysqld \
 COPY	tools/setting.sh .
 COPY	conf/my.cnf /etc/mysql/my.cnf
 COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
+
 RUN		chmod 777 ./setting.sh
+RUN		chmod 644 /etc/mysql/my.cnf
+RUN		chmod 644 /etc/mysql/mariadb.conf.d/50-server.cnf
 
 EXPOSE		3306
 
-VOLUME		["$HOME/data/mariadb"]
+VOLUME		["/home/jaejkim/data/mariadb"]
 
 ENTRYPOINT	["/usr/bin/dumb-init", "--"]
 

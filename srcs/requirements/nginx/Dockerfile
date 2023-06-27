@@ -1,15 +1,14 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y \
-    nginx \
-    dumb-init
+RUN apt-get -y update \
+	&& apt-get -y install dumb-init
 
-COPY    conf/default.conf /etc/nginx/sites-enabled/default
-COPY	tools/server.crt /etc/nginx/ssl/nginx.crt
-COPY	tools/server_pkey.pem /etc/nginx/ssl/nginx.pem
+RUN apt-get -y install nginx
 
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
+COPY conf/default.conf /etc/nginx/sites-enabled/default
+COPY tools/server.crt /etc/nginx/ssl/nginx.crt
+COPY tools/server_pkey.pem /etc/nginx/ssl/nginx.pem
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/usr/bin/dumb-init"]
 
-EXPOSE 80
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
