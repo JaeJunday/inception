@@ -10,7 +10,7 @@ if [ ! -d /var/lib/mysql/${WORDPRESS_DB_NAME} ]; then
     mysql -u root -e "GRANT ALL PRIVILEGES ON $WORDPRESS_DB_NAME.* TO $WORDPRESS_DB_USER@$WORDPRESS_DB_NAME;"
     mysql -u root -e "FLUSH PRIVILEGES;"
 
-    service mariadb stop
+   service mariadb stop
 fi
 
 mysqld --user=root
