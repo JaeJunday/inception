@@ -1,10 +1,10 @@
 <?php
 # DB setting
 
-define( 'DB_NAME', $_ENV['WORDPRESS_DB_NAME'] );
-define( 'DB_USER', $_ENV['WORDPRESS_DB_USER'] );
-define( 'DB_PASSWORD', $_ENV['WORDPRESS_DB_PASSWORD'] );
-define( 'DB_HOST', $_ENV['WORDPRESS_DB_HOST'] );
+define( 'DB_NAME', 'mydb' );
+define( 'DB_USER', 'jaejkim' );
+define( 'DB_PASSWORD', '1234' );
+define( 'DB_HOST', 'mariadb' );
 
 $table_prefix = 'wp_';
 define( 'AUTH_KEY', $_ENV['WORDPRESS_AUTH_KEY'] );
