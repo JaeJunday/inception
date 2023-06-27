@@ -20,7 +20,8 @@ RUN		chmod 777 ./settings.sh
 
 EXPOSE		3306
 
-VOLUME		["/home/jaejkim/data/mariadb"]
+VOLUME		["$HOME/data/mariadb"]
 
 ENTRYPOINT	["/usr/bin/dumb-init", "--"]
 
+CMD		["./settings.sh"]
