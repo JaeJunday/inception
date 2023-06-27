@@ -16,7 +16,7 @@ COPY	tools/my.sql .
 COPY	conf/my.cnf /etc/mysql/my.cnf
 COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-# RUN		chmod 777 ./settings.sh
+RUN		chmod 777 ./settings.sh
 
 EXPOSE		3306
 
@@ -24,4 +24,3 @@ VOLUME		["/home/jaejkim/data/mariadb"]
 
 ENTRYPOINT	["/usr/bin/dumb-init", "--"]
 
-CMD		["mysqld", "--user=root"]
