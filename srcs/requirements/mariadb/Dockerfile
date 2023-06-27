@@ -15,7 +15,6 @@ RUN		mkdir /run/mysqld \
 COPY	tools/setting.sh .
 COPY	conf/my.cnf /etc/mysql/my.cnf
 COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
-
 RUN		chmod 777 ./setting.sh
 
 EXPOSE		3306
