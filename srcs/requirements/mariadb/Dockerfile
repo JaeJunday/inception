@@ -4,7 +4,8 @@ RUN 	apt-get -y update \
 		&& apt-get -y install dumb-init
 
 RUN		apt-get -y install \
-		mariadb-server
+		mariadb-server \
+		mariadb-client
 
 RUN		mkdir /run/mysqld \
 		&& chmod 777 /run/mysqld \
