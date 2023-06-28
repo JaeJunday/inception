@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
-RUN apt-get -y update \
-	&& apt-get -y install dumb-init
+RUN apt-get -y update && apt-get -y install \
+	dumb-init
 
 RUN apt-get -y install nginx
 
