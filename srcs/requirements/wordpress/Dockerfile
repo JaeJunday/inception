@@ -19,7 +19,7 @@ RUN curl -o /tmp/wordpress.tar.gz -SL https://wordpress.org/latest.tar.gz
 COPY conf/wp-config.php /tmp/wp-config.php
 COPY conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
-COPY tool/setting.sh .
+COPY tools/setting.sh .
 RUN chmod 777 ./setting.sh
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
