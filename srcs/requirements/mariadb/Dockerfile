@@ -16,7 +16,7 @@ COPY	tools/setting.sh .
 COPY	conf/my.cnf /etc/mysql/my.cnf
 COPY	conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN		chmod 777 ./setting.sh
+RUN		chmod +x ./setting.sh
 RUN		chmod 644 /etc/mysql/my.cnf
 RUN		chmod 644 /etc/mysql/mariadb.conf.d/50-server.cnf
 

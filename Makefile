@@ -12,4 +12,13 @@ fclean:
 		sudo make down
 		sudo docker system prune -a
 
-.PHONY: clean fclean up down
+opendb:		
+		sudo docker exec -it mariadb /bin/bash
+
+opensv:	
+		sudo docker exec -it nginx /bin/bash
+
+openwp:
+		sudo docker exec -it wordpress /bin/bash
+
+.PHONY: clean fclean up down opendb opensv openwp
