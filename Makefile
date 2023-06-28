@@ -1,5 +1,5 @@
 up : 
-		cd ./srcs && sudo docker compose up
+		cd ./srcs && sudo docker compose up --build
 
 down : 
 		cd ./srcs && sudo docker compose down
