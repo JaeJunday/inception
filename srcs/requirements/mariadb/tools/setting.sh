@@ -10,7 +10,7 @@ if [ ! -d /var/lib/mysql/${WORDPRESS_DB_NAME} ]; then
     service mariadb stop
     echo "=> Setting MariaDB Create Database... Done!"
 else
-    echo "=> Setting MariaDB Create Database... Already exist!"
+    echo "=> Mariadb connect!"
 fi
 
 mysqld --user=root
