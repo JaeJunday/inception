@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   mariadb:
@@ -8,7 +8,7 @@ services:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
     volumes:
-      - /home/jaejkim/data/mariadb:/var/lib/mysql
+      - db_data:/var/lib/mysql
     expose:
       - 3306
     restart: always
@@ -26,7 +26,7 @@ services:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
     volumes:
-      - /home/jaejkim/data/wordpress:/var/www/html
+      - wp_data:/var/www/html
     expose:
       - 9000
     restart: always
@@ -45,7 +45,7 @@ services:
       context: ./requirements/nginx
       dockerfile: Dockerfile
     volumes:
-      - /home/jaejkim/data/wordpress:/var/www/html
+      - wp_data:/var/www/html
     ports:
       - 443:443
     restart: always
@@ -54,6 +54,81 @@ services:
     env_file:
       - .env
 
-networks:
-  mynetwork:
-    driver: bridge
+volumes:
+  db_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/jaejkim/data/mariadb
+  wp_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/jaejkim/data/wordpress
+
+##############################################################
+
+
+
+# version: '3'
+
+# services:
+#   mariadb:
+#     container_name: mariadb
+#     image: mariadb
+#     build:
+#       context: ./requirements/mariadb
+#       dockerfile: Dockerfile
+#     volumes:
+#       - /home/jaejkim/data/mariadb:/var/lib/mysql
+#     expose:
+#       - 3306
+#     restart: always
+#     networks:
+#       - mynetwork
+#     env_file:
+#       - .env
+
+#   wordpress:
+#     container_name: wordpress
+#     image: wordpress
+#     depends_on: 
+#       - mariadb
+#     build:
+#       context: ./requirements/wordpress
+#       dockerfile: Dockerfile
+#     volumes:
+#       - /home/jaejkim/data/wordpress:/var/www/html
+#     expose:
+#       - 9000
+#     restart: always
+#     networks:
+#       - mynetwork
+#     env_file:
+#       - .env
+
+#   nginx:
+#     container_name: nginx
+#     image: nginx
+#     depends_on:
+#       - mariadb
+#       - wordpress
+#     build:
+#       context: ./requirements/nginx
+#       dockerfile: Dockerfile
+#     volumes:
+#       - /home/jaejkim/data/wordpress:/var/www/html
+#     ports:
+#       - 443:443
+#     restart: always
+#     networks:
+#       - mynetwork
+#     env_file:
+#       - .env
+
+# networks:
+#   mynetwork:
+#     driver: bridge
+

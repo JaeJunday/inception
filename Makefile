@@ -1,8 +1,8 @@
 up : 
-		cd ./srcs && sudo docker compose up --build
+		cd ./srcs && sudo docker-compose up --build
 
 down : 
-		cd ./srcs && sudo docker compose down
+		cd ./srcs && sudo docker-compose down
 
 clean :
 		sudo make down
