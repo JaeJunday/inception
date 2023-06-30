@@ -1,8 +1,8 @@
 up : 
-		cd ./srcs && sudo docker-compose up --build
+		cd ./srcs && sudo docker compose up --build
 
 down : 
-		cd ./srcs && sudo docker-compose down
+		cd ./srcs && sudo docker compose down
 
 clean :
 		sudo make down
@@ -11,5 +11,6 @@ clean :
 fclean:
 		sudo make down
 		echo y | sudo docker system prune -a
+		
 
 .PHONY: clean fclean up down opendb opensv openwp
