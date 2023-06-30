@@ -1,7 +1,4 @@
-NAME 	= inception
-
-all		: $(NAME)
-$(NAME) :
+all 	:
 		cd ./srcs && sudo docker compose up --build
 
 down	: 
