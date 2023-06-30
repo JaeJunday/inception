@@ -1,16 +1,22 @@
-up : 
+NAME 	= inception
+
+all		: $(NAME)
+$(NAME) :
 		cd ./srcs && sudo docker compose up --build
 
-down : 
+down	: 
 		cd ./srcs && sudo docker compose down
 
-clean :
+clean	:
 		sudo make down
-		sudo docker image prune -a
+		echo y | sudo docker image prune -a
+		echo y | sudo docker volume prune -a
 
-fclean:
-		sudo make down
+fclean	: clean
 		echo y | sudo docker system prune -a
-		
 
-.PHONY: clean fclean up down opendb opensv openwp
+re		:
+		make fclean
+		make all
+
+.PHONY: all clean fclean down re
