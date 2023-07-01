@@ -20,7 +20,7 @@ fclean	: clean
 		@echo y | docker system prune -a
 		@rm -rf /home/jaejkim/data
 		@docker volume rm mariadb wordpress
-		@echo "$(B_Red)=> Remove$(Reset) Local Volume"
+		@echo "$(B_Red)=> Remove$(Purple) Local Volume$(Reset)"
 		@echo "$(B_Red)=> Remove$(B_Cyan) 🐳Docker$(Reset) Cash"
 
 re		:
