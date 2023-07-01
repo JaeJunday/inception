@@ -2,11 +2,11 @@ all 	:
 		@echo "$(Green)=> Create $(Purple)Local Volume Path=/home/jaejkim/data/$(Reset)"
 		@mkdir -p /home/jaejkim/data/wordpress
 		@mkdir -p /home/jaejkim/data/mariadb
-		@echo "$(Cyan)=> Docker$(Reset) compose up"
+		@echo "$(Cyan)=> 🐳Docker$(Reset) compose up"
 		@cd ./srcs && sudo docker compose up --build
 
 down	: 
-		@echo "$(Cyan)Docker$(Reset) compose down"	
+		@echo "$(Cyan)🐳Docker$(Reset) compose down"	
 		@cd ./srcs && sudo docker compose down
 		@echo "$(B_Red)=> Down $(B_Green)[container, network] $(Reset)compose data"
 
@@ -20,7 +20,7 @@ fclean	: clean
 		@echo y | sudo docker system prune -a
 		@rm -rf /home/jaejkim/data
 		@echo "$(B_Red)=> Remove$(Reset) Local Volume"
-		@echo "$(B_Red)=> Remove$(Cyan) Docker$(Reset) build Cash"
+		@echo "$(B_Red)=> Remove$(Cyan) 🐳Docker$(Reset) Cash"
 
 re		:
 		make fclean
