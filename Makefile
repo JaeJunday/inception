@@ -1,13 +1,13 @@
 all 	:
 		@mkdir -p /home/jaejkim/data/wordpress
 		@mkdir -p /home/jaejkim/data/mariadb
+		@echo "$(B_Cyan)=> 🐳Docker$(Reset) compose up"
 		@echo "$(Green)=> Create $(Purple)Local Volume Path=/home/jaejkim/data/$(Reset)"
 		@cd ./srcs && sudo docker compose up --build
-		@echo "$(B_Cyan)=> 🐳Docker$(Reset) compose up"
 
 down	: 
 		@cd ./srcs && sudo docker compose down
-		@echo "$(B_Cyan)🐳Docker$(Reset) compose down"	
+		@echo "$(B_Cyan)=> 🐳Docker$(Reset) compose down"	
 		@echo "$(B_Red)=> Down $(B_Green)[container, network] $(Reset)compose data"
 
 clean	:
