@@ -1,4 +1,5 @@
 all 	:
+		@make domain
 		@mkdir -p /home/jaejkim/data/wordpress
 		@mkdir -p /home/jaejkim/data/mariadb
 		@echo "$(B_Cyan)=> 🐳Docker$(Reset) compose up"
@@ -27,7 +28,15 @@ re		:
 		make fclean
 		make all
 
-.PHONY: all clean fclean down re
+domain :
+		@if ! grep -e '^127.0.0.1\s\+jaejkim.42.fr' /etc/hosts; then \
+			echo "$(Yellow)=> Add Domain name ---$(Reset)"; \
+			sudo sh -c 'echo "127.0.0.1	jaejkim.42.fr" >> /etc/hosts'; \
+		else \
+			echo "$(Yellow)=> Domain name already setted : jaejkim.42.fr$(Reset)"; \
+		fi
+
+.PHONY: all clean fclean down re domain
 
 
 # ESCAPE COLOR SET
