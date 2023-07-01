@@ -3,7 +3,7 @@ version: '3'
 services:
   mariadb:
     container_name: mariadb
-    image: mariadb
+    image: mariadb:10.5.19
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
@@ -19,7 +19,7 @@ services:
 
   wordpress:
     container_name: wordpress
-    image: wordpress
+    image: wordpress:6.2.2
     depends_on: 
       - mariadb
     build:
@@ -37,7 +37,7 @@ services:
 
   nginx:
     container_name: nginx
-    image: nginx
+    image: nginx:1.18.0
     depends_on:
       - mariadb
       - wordpress

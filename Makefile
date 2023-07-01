@@ -3,21 +3,21 @@ all 	:
 		@mkdir -p /home/jaejkim/data/mariadb
 		@echo "$(B_Cyan)=> 🐳Docker$(Reset) compose up"
 		@echo "$(Green)=> Create $(Purple)Local Volume Path=/home/jaejkim/data/$(Reset)"
-		@cd ./srcs && sudo docker compose up --build
+		@cd ./srcs && docker compose up --build 
 
 down	: 
-		@cd ./srcs && sudo docker compose down
+		@cd ./srcs && docker compose down
 		@echo "$(B_Cyan)=> 🐳Docker$(Reset) compose down"	
 		@echo "$(B_Red)=> Down $(B_Green)[container, network] $(Reset)compose data"
 
 clean	:
-		@sudo make down
-		@echo y | sudo docker image prune -a
-		@echo y | sudo docker volume prune -a
+		@make down
+		@echo y | docker image prune -a
+		@echo y | docker volume prune -a
 		@echo "$(B_Red)=> Remove $(B_Green)[images, volume] $(Reset)compose data"
 
 fclean	: clean
-		@echo y | sudo docker system prune -a
+		@echo y | docker system prune -a
 		@rm -rf /home/jaejkim/data
 		@docker volume rm mariadb wordpress
 		@echo "$(B_Red)=> Remove$(Reset) Local Volume"
