@@ -1,9 +1,9 @@
 all 	:
 		@make domain
-		@mkdir -p /home/jaejkim/data/wordpress
-		@mkdir -p /home/jaejkim/data/mariadb
+		@mkdir -p $(HOME)/data/wordpress
+		@mkdir -p $(HOME)/data/mariadb
 		@echo "$(B_Cyan)=> 🐳Docker$(Reset) compose up"
-		@echo "$(Green)=> Create $(Purple)Local Volume Path=/home/jaejkim/data/$(Reset)"
+		@echo "$(Green)=> Create $(Purple)Local Volume Path=$(HOME)/data/$(Reset)"
 		@cd ./srcs && docker compose up --build 
 
 down	: 
@@ -19,7 +19,7 @@ clean	:
 
 fclean	: clean
 		@echo y | docker system prune -a
-		@rm -rf /home/jaejkim/data
+		@rm -rf $(HOME)/data
 		@docker volume rm mariadb wordpress
 		@echo "$(B_Red)=> Remove$(Purple) Local Volume$(Reset)"
 		@echo "$(B_Red)=> Remove$(B_Cyan) 🐳Docker$(Reset) Cash"
